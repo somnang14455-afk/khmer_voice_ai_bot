@@ -1,84 +1,81 @@
 """
 Khmer AI Studio
-Emotion Core System
+Emotion Control Module
 Version 1.0
 """
 
-
-# ==========================================
-# AVAILABLE EMOTIONS
-# ==========================================
-
-EMOTIONS = {
-
-    "normal": {
-        "name": "😐 Normal",
-        "description": "សំឡេងធម្មតា ស្មើ"
-    },
-
-
-    "happy": {
-        "name": "😀 Happy",
-        "description": "សំឡេងរីករាយ សប្បាយចិត្ត"
-    },
-
-
-    "sad": {
-        "name": "😢 Sad",
-        "description": "សំឡេងកម្សត់ ឈឺចាប់"
-    },
-
-
-    "angry": {
-        "name": "😡 Angry",
-        "description": "សំឡេងខឹង ខ្លាំង"
-    },
-
-
-    "fear": {
-        "name": "😨 Fear",
-        "description": "សំឡេងភ័យខ្លាច"
-    },
-
-
-    "story": {
-        "name": "🎬 Story",
-        "description": "សំឡេងនិទានរឿង"
-    },
-
-
-    "advertisement": {
-        "name": "📢 Advertisement",
-        "description": "សំឡេងផ្សព្វផ្សាយ"
-    }
-
-}
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 # ==========================================
-# GET ALL EMOTIONS
+# EMOTION MENU
 # ==========================================
 
-def get_emotions():
+def emotion_menu():
 
-    return EMOTIONS
+    keyboard = [
 
+        [
+            InlineKeyboardButton(
+                "😊 សប្បាយ / រីករាយ",
+                callback_data="emotion_happy"
+            )
+        ],
 
+        [
+            InlineKeyboardButton(
+                "😢 សោកសៅ / ឈឺចាប់",
+                callback_data="emotion_sad"
+            )
+        ],
 
-# ==========================================
-# GET ONE EMOTION
-# ==========================================
+        [
+            InlineKeyboardButton(
+                "😡 ខឹង / ស្រែក",
+                callback_data="emotion_angry"
+            )
+        ],
 
-def get_emotion(emotion_id):
+        [
+            InlineKeyboardButton(
+                "😱 ភ័យខ្លាច",
+                callback_data="emotion_fear"
+            )
+        ],
 
-    return EMOTIONS.get(emotion_id)
+        [
+            InlineKeyboardButton(
+                "🤫 ខ្សឹប",
+                callback_data="emotion_whisper"
+            )
+        ],
 
+        [
+            InlineKeyboardButton(
+                "😂 កំប្លែង",
+                callback_data="emotion_funny"
+            )
+        ],
 
+        [
+            InlineKeyboardButton(
+                "🎙️ Normal",
+                callback_data="emotion_normal"
+            )
+        ],
 
-# ==========================================
-# CHECK EMOTION
-# ==========================================
+        [
+            InlineKeyboardButton(
+                "⬅️ Back",
+                callback_data="text_to_voice"
+            ),
 
-def is_valid_emotion(emotion_id):
+            InlineKeyboardButton(
+                "🏠 Home",
+                callback_data="home"
+            )
+        ]
 
-    return emotion_id in EMOTIONS
+    ]
+
+    return InlineKeyboardMarkup(keyboard)
